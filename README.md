@@ -197,10 +197,8 @@ Mục tiêu của ứng dụng chỉ là hiển thị "secret" mà nó nhận đ
 (Bạn hãy chụp ảnh màn hình các bước demo và dán vào đây)
 
 1. Hình ảnh so sánh kích thước image (Demo 1)
-   [Dán ảnh chụp terminal lệnh docker images của bạn vào đây]
+   <img width="1024" height="122" alt="image" src="https://github.com/user-attachments/assets/93e5f726-3a54-4bdf-bcd5-cdff987697da" />
+
 
 2. Hình ảnh kết quả chạy Docker Compose (Demo 2)
-   [Dán ảnh chụp trình duyệt http://localhost:3000 hiển thị secret của Compose vào đây]
-
-3. Hình ảnh kết quả chạy Kubernetes (Demo 3)
-   [Dán ảnh chụp trình duyệt hiển thị secret của Kubernetes (từ Minikube) vào đây]
+   <img width="693" height="528" alt="image" src="https://github.com/user-attachments/assets/26f9e26b-b895-45e4-87eb-a8851c9f9b3b" />
