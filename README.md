@@ -89,6 +89,8 @@ docker images | grep "-app"
 
 Kết quả (Minh họa):
 Bạn sẽ thấy hardened-app (sử dụng multi-stage build và alpine) có kích thước nhỏ hơn đáng kể so với vulnerable-app (sử dụng image node:18 đầy đủ).
+# <img width="1024" height="122" alt="image" src="https://github.com/user-attachments/assets/626aeed0-ad68-44ab-a3b6-b01b224c75c8" />
+
 
 hardened-app cũng an toàn hơn vì nó chạy với non-root user (appuser), giảm thiểu bề mặt tấn công nếu container bị xâm nhập.
 
@@ -105,6 +107,8 @@ docker-compose up
 Bước 2: Kiểm tra kết quả
 
 Truy cập http://localhost:3000 trên trình duyệt.
+# <img width="847" height="483" alt="image" src="https://github.com/user-attachments/assets/5e8af123-c83d-466f-8bf1-95b70897df85" />
+# <img width="693" height="528" alt="image" src="https://github.com/user-attachments/assets/39339d3b-1e1b-43f9-b046-12799fea85a7" />
 
 Bạn sẽ thấy dòng chữ: Secret của bạn là: Day la secret tu Docker Compose!
 
