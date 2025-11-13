@@ -1,0 +1,23 @@
+# docker-compose.yml
+# Demo cách inject secret vào container một cách an toàn
+# Chạy bằng lệnh: docker-compose up
+
+version: '3.8'
+
+services:
+  webapp-hardened:
+    # Build image từ Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    image: hardened-app
+    ports:
+      - '3000:3000'
+
+    # === SECRET MANAGEMENT ===
+    # Inject secret qua biến môi trường
+    # Đây là cách làm an toàn, secret không bị "nướng" vào image
+    environment:
+      - MY_SECRET=Day la secret tu Docker Compose!
+
+    # (Nếu dùng Docker Swarm, bạn có thể dùng 'secrets:' để bảo mật hơn nữa)

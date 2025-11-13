@@ -1,0 +1,45 @@
+# ----- Dockerfile.hardened -----
+# CÁC GIẢI PHÁP (BEST PRACTICES):
+# 1. Sử dụng Multi-stage builds:
+#    - Stage "builder" để cài đặt dependencies.
+#    - Stage "production" (cuối cùng) chỉ sao chép các file cần thiết để chạy app.
+# 2. Sử dụng minimal base image (node:18-alpine) -> giảm kích thước, giảm bề mặt tấn công.
+# 3. Tạo và sử dụng một non-root user (appuser) để chạy ứng dụng.
+# 4. Chỉ sao chép các file cần thiết (thư mục app) thay vì toàn bộ context.
+
+# ----- Stage 1: Builder -----
+# Dùng image alpine (nhẹ) để build
+FROM node:18-alpine AS builder
+
+WORKDIR /usr/src/app
+
+# Chỉ copy package.json và package-lock.json (tận dụng cache)
+COPY app/package*.json ./
+RUN npm install
+
+# Copy phần còn lại của mã nguồn ứng dụng
+COPY ./app ./
+
+# ----- Stage 2: Production -----
+# Bắt đầu từ một image alpine sạch
+FROM node:18-alpine
+
+WORKDIR /usr/src/app
+
+# Tạo group và user riêng để chạy ứng dụng (không dùng root)
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Sao chép các file đã build (bao gồm node_modules) từ stage "builder"
+COPY --from=builder /usr/src/app .
+
+# Đổi quyền sở hữu file cho user mới
+RUN chown -R appuser:appgroup .
+
+# Chuyển sang user không phải root
+USER appuser
+
+# Mở port
+EXPOSE 3000
+
+# Lệnh chạy ứng dụng
+CMD ["npm", "start"]

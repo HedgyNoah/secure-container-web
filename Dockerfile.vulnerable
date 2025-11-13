@@ -1,0 +1,25 @@
+# ----- Dockerfile.vulnerable -----
+# CÁC VẤN ĐỀ:
+# 1. Sử dụng image base "node:18" (rất lớn, chứa nhiều thư viện không cần thiết -> tăng bề mặt tấn công).
+# 2. Chạy container với quyền "root" (mặc định). Rất nguy hiểm nếu container bị xâm nhập.
+# 3. Sao chép TOÀN BỘ thư mục (dấu chấm .) vào image, có thể bao gồm file .env, .git, v.v.
+# 4. Không dùng multi-stage build, image cuối cùng chứa cả build-dependencies (npm).
+
+# Sử dụng image base lớn
+FROM node:18
+
+# Đặt thư mục làm việc
+WORKDIR /usr/src/app
+
+# Sao chép TOÀN BỘ file (có thể bao gồm cả file nhạy cảm)
+# SỬA LỖI: Chúng ta copy nội dung từ thư mục 'app' vào WORKDIR
+COPY app/ .
+
+# Cài đặt phụ thuộc
+RUN npm install
+
+# Mở port
+EXPOSE 3000
+
+# Chạy ứng dụng (mặc định chạy bằng user ROOT)
+CMD ["npm", "start"]
