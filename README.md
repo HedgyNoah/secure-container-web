@@ -202,3 +202,6 @@ Mục tiêu của ứng dụng chỉ là hiển thị "secret" mà nó nhận đ
 
 2. Hình ảnh kết quả chạy Docker Compose (Demo 2)
    <img width="693" height="528" alt="image" src="https://github.com/user-attachments/assets/26f9e26b-b895-45e4-87eb-a8851c9f9b3b" />
+
+7. Video demo youtube:
+https://youtu.be/D0AD34oNhVU
